@@ -20,7 +20,7 @@ from sistema_coder.views import saludar, saludar_con_fecha, saludar_usuario, sal
 from control_estudios.views import listar_estudiantes, listar_cursos
 
 urlpatterns = [
-    path("", inicio),
+    path("", inicio, name="inicio"),
     path('admin/', admin.site.urls),
     path('saludo/', saludar),
     path('saludo-hoy/', saludar_con_fecha),
