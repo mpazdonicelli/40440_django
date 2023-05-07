@@ -5,9 +5,9 @@
 <form action = "{% url 'crear_curso' %}" method="post">
     {% csrf_token %}
     <p> Nombre del curso </p>
-    <input type="text" name="Nombre">
+    <input type="text" name="nombre">
     <p> Comision </p>
-    <input type="number" name="Comision">  
+    <input type="number" name="comision">  
     <input type="submit" value="Enviar">
 </form>
 

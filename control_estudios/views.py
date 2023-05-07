@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from control_estudios.models import Estudiante, Curso, Profesor, Entregable
 # Create your views here.
 
@@ -26,10 +27,17 @@ def listar_cursos(request):
     return http_response
 
 def crear_curso(request):
-    contexto = {}
-    http_response= render(
-        request=request,
-        template_name='control_estudios/formulario_curso_a_mano.html',
-        context=contexto,
-    )
-    return http_response
+    if request.method == "POST":
+        data = request.POST # es un diccionario
+        nombre = data["nombre"]
+        comision = data["comision"]
+        curso = Curso(nombre=nombre, comision=comision) # lo crea en RAM
+        curso.save() # lo guarda en la BD
+        url_exitosa = reverse('lista_cursos')
+        return redirect(url_exitosa) # redirecciono al usuario a la lista de cursos
+    else: #GET
+        http_response= render(
+            request=request,
+            template_name='control_estudios/formulario_curso_a_mano.html',
+        )
+        return http_response
