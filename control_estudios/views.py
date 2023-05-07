@@ -27,7 +27,7 @@ def listar_cursos(request):
     )
     return http_response
 
-def crear_curso(request):
+def crear_curso_2(request):
     if request.method == "POST":
         data = request.POST # es un diccionario
         nombre = data["nombre"]
@@ -45,7 +45,7 @@ def crear_curso(request):
     
 
 
-def crear_curso_2(request):
+def crear_curso(request):
     if request.method == "POST":
         formulario = CursoFormulario(request.POST)
 
@@ -64,7 +64,22 @@ def crear_curso_2(request):
         formulario = CursoFormulario()
         http_response= render(
             request=request,
-            template_name='control_estudios/formulario_curso_a_mano.html',
+            template_name='control_estudios/formulario_curso.html',
             context={'formulario':formulario}
         )
         return http_response
+    
+def buscar_cursos(request):
+    if request.method == "POST":
+        data = request.POST
+        busqueda = data["busqueda"]
+        cursos = Curso.objects.filter(comision__contains=busqueda) #contains=contiene, exact=exacto
+        contexto = {
+            "cursos": cursos,
+        }
+    http_response= render(
+        request=request,
+        template_name='control_estudios/lista_cursos.html',
+        context=contexto,
+    )
+    return http_response

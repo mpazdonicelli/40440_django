@@ -17,11 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from sistema_coder.views import saludar, saludar_con_fecha, saludar_usuario, saludar_con_html
-from control_estudios.views import listar_estudiantes, listar_cursos, crear_curso, crear_curso_2
+from control_estudios.views import listar_estudiantes, listar_cursos, crear_curso, crear_curso_2, buscar_cursos
+
+
+
 
 urlpatterns = [
     path('estudiantes/', listar_estudiantes, name = "lista_estudiantes"),
     path('cursos/', listar_cursos, name = "lista_cursos"),
     path('crear-curso/', crear_curso, name="crear_curso"),
-    path('crear-curso-2/', crear_curso_2, name="crear_curso_2")
+    path('crear-curso-2/', crear_curso_2, name="crear_curso_2"),
+    path('buscar-cursos/', buscar_cursos, name= "buscar_cursos"),
 ]
