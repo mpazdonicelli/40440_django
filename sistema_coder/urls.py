@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from sistema_coder.views import saludar, saludar_con_fecha, saludar_usuario, saludar_con_html, inicio
-from control_estudios.views import listar_estudiantes, listar_cursos
+from control_estudios.views import listar_estudiantes, listar_cursos, crear_curso
 
 urlpatterns = [
     path("", inicio, name="inicio"),
